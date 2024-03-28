@@ -50,29 +50,7 @@ export default function App() {
 
 
   return (
-    <View style={styles.container}>
-      <View style={styles.imageContainer}>
-        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
-      </View>
-      
-      {showAppOptions ? (
-       <View style={styles.optionsContainer}>
-        <View style={styles.optionsRow}>
-          <IconButton icon="refresh" label="Reset" onPress={onReset} />
-          <CircleButton onPress={onAddSticker} />
-          <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
-        </View>
-      </View>
-      ) : (<View style={styles.footerContainer}>
-          <Button theme="primary" label="sei ka" onPress={pickImageAsync}/>
-          <Button label="seffdgsdfgsadfi pa" onPress={() => setShowAppOptions(true)}/>
-        </View>
-        )}
-        <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
-
-        </EmojiPicker>
-      <StatusBar style="auto" />
-    </View>
+    
   );
 }
 
