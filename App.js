@@ -1,5 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import { StyleSheet, View} from "react-native";
+
 import * as ImagePicker from 'expo-image-picker';
 import Button from './components/button';
 import ImageViewer from './components/ImageViewer';
@@ -7,6 +8,7 @@ import { useState } from 'react';
 import CircleButton from './components/CircleBuntton';
 import IconButton from './components/iconButton';
 import EmojiPicker from "./components/EmojiPicker";
+import EmojiList from './components/EmojiList';
 
 const PlaceholderImage = require("./assets/background-image.png");
 
@@ -15,6 +17,7 @@ export default function App() {
   const [showAppOptions, setShowAppOptions] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [pickedEmoji, setPickedEmoji] = useState(null);
 
   const pickImageAsync = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -50,7 +53,29 @@ export default function App() {
 
 
   return (
-    
+    <View style={styles.container}>
+      <View style={styles.imageContainer}>
+        <ImageViewer placeholderImageSource={PlaceholderImage} selectedImage={selectedImage}/>
+      </View>
+      
+      {showAppOptions ? (
+       <View style={styles.optionsContainer}>
+        <View style={styles.optionsRow}>
+          <IconButton icon="refresh" label="Reset" onPress={onReset} />
+          <CircleButton onPress={onAddSticker} />
+          <IconButton icon="save-alt" label="Save" onPress={onSaveImageAsync} />
+        </View>
+      </View>
+      ) : (<View style={styles.footerContainer}>
+          <Button theme="primary" label="sei ka" onPress={pickImageAsync}/>
+          <Button label="seffdgsdfgsadfi pa" onPress={() => setShowAppOptions(true)}/>
+        </View>
+        )}
+        <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
+        <EmojiList onSelect={setPickedEmoji} onCloseModal={onModalClose} />
+        </EmojiPicker>
+      <StatusBar style="auto" />
+    </View>
   );
 }
 
