@@ -65,7 +65,7 @@ export default function App() {
       </View>
       ) : (<View style={styles.footerContainer}>
           <Button theme="primary" label="sei ka" onPress={pickImageAsync}/>
-          <Button label="sei pa" onPress={() => setShowAppOptions(true)}/>
+          <Button label="seffdgsdfgsadfi pa" onPress={() => setShowAppOptions(true)}/>
         </View>
         )}
         <EmojiPicker isVisible={isModalVisible} onClose={onModalClose}>
